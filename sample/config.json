@@ -1,0 +1,19 @@
+{
+	"code": "my_catalog",
+	"rootDir": "/opt/objectum/projects/my_catalog",
+	"adminPassword": "D033E22AE348AEB5660FC2140AEC35850C4DA997",
+	"port": 3100,
+	"database": {
+		"host": "localhost",
+		"port": 5432,
+		"db": "my_catalog",
+		"dbUser": "my_catalog",
+		"dbPassword": "1",
+		"dbaUser": "postgres",
+		"dbaPassword": "12345"
+	},
+	"objectum": {
+		"host": "localhost",
+		"port": 8200
+	}
+}
