@@ -1,6 +1,14 @@
 # catalog
 Objectum project example
 
+## Install
+
+Install CLI:
+```bash
+npm i -g objectum-cli
+```
+
+
 mkdir /opt/objectum/projects/catalog
 
 create-react-app
