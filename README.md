@@ -8,30 +8,44 @@ Install CLI:
 npm i -g objectum-cli
 ```
 
+Install platform
+```bash
+mkdir /opt/objectum
+objectum-cli --create-platform --path /opt/objectum
+```
 
-mkdir /opt/objectum/projects/catalog
+Install project with name "my_project":
+```bash
+mkdir /opt/objectum/projects/my_catalog
+cd /opt/objectum/projects/my_catalog
+git clone https://github.com/objectum/catalog.git .
+npm install
+npm run build
+cp -r /opt/objectum/projects/my_catalog/sample/* /opt/objectum/projects/my_catalog
+```
 
-create-react-app
+Create store:
+```bash
+mkdir /opt/objectum/projects/my_catalog/bin
+node create.js
+node import.js
+```
+Run:
+```bash
+cd /opt/objectum/server
+node index.js
+cd /opt/objectum/projects/my_catalog
+node index.js
+```
+Open URL http://127.0.0.1:3100
 
-config.json  
-store-create  
-store-import  
-store-remove  
-store-export
+## Author
 
-npm i fastify fastify-http-proxy objectum-client objectum-react --save
+**Dmitriy Samortsev**
 
-npm install babel-plugin-transform-runtime --save-dev
-{
-    ...
-    "plugins": [
-        ["transform-runtime", {
-            "regenerator": true
-        }]
-    ]
-}
++ http://github.com/objectum
 
-src/setupProxy.js  
-index.js
 
-start
+## Copyright and license
+
+MIT
