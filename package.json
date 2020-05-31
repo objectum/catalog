@@ -1,18 +1,20 @@
 {
-  "name": "objectum-catalog",
+  "name": "catalog",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "dependencies": {
     "express": "^4.17.1",
     "express-http-proxy": "^1.6.0",
-    "objectum-client": "^1.1.22",
-    "objectum-react": "^1.1.52",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "react-dropzone": "^10.1.7",
-    "react-modal": "^3.10.1",
-    "react-router-dom": "^5.0.1",
-    "react-scripts": "3.0.1"
+    "objectum-client": "^1.1.92",
+    "objectum-proxy": "^0.1.42",
+    "objectum-react": "^1.1.297",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-dropzone": "^10.2.2",
+    "react-modal": "^3.11.2",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "^3.4.1"
   },
   "scripts": {
     "start": "react-scripts start",
