@@ -1,7 +1,7 @@
 let $o = require ("/opt/objectum/server/objectum");
 
 $o.db.execute ({
-	"code": "my_catalog",
+	"code": "catalog",
 	"fn": "import",
-	"file": "../schema/schema-catalog.json"
+	"file": "schema-objectum.json"
 });
