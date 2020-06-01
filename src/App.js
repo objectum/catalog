@@ -2,6 +2,8 @@ import React, {Component} from "react";
 import {Store} from "objectum-client";
 import {ObjectumApp} from "objectum-react";
 
+import ItemModel from "./models/ItemModel";
+
 import "objectum-react/lib/css/bootstrap.css";
 import "objectum-react/lib/css/objectum.css";
 import "objectum-react/lib/fontawesome/css/all.css";
@@ -13,7 +15,8 @@ class App extends Component {
 		super (props);
 		
 		store.setUrl ("/api");
-		window.store = store;
+		
+		store.register ("item", ItemModel);
 	}
 	
 	render () {
