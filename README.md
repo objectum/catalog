@@ -45,7 +45,7 @@ Run:
 ```bash
 cd /opt/objectum/server
 node index.js
-cd /opt/objectum/projects/my_catalog
+cd /opt/objectum/projects/catalog
 node index.js
 ```
 Open URL http://127.0.0.1:3100
