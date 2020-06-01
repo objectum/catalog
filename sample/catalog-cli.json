@@ -1,0 +1,267 @@
+{
+	"createModel": [
+		{
+			"name": "Item", 
+			"code": "item"
+		},
+		{
+			"name": "Item", 
+			"code": "item",
+			"parent": "d"
+		},
+		{
+			"name": "Type", 
+			"code": "type",
+			"parent": "d.item"
+		},
+		{
+			"name": "Item", 
+			"code": "item",
+			"parent": "t"
+		},
+		{
+			"name": "Comment", 
+			"code": "comment",
+			"parent": "t.item"
+		}
+	],
+	"createProperty": [
+		{
+			"model": "d.item.type", 
+			"name": "Name", 
+			"code": "name",
+			"type": "string"
+		},
+		{
+			"model": "t.item.comment", 
+			"name": "Item", 
+			"code": "item",
+			"type": "item"
+		},
+		{
+			"model": "t.item.comment", 
+			"name": "Date",
+			"code": "date",
+			"type": "date"
+		},
+		{
+			"model": "t.item.comment",
+			"name": "Text",
+			"code": "text",
+			"type": "string"
+		},
+		{
+			"model": "item", 
+			"name": "Date", 
+			"code": "date",
+			"type": "date"
+		},
+		{
+			"model": "item", 
+			"name": "Name", 
+			"code": "name",
+			"type": "string"
+		},
+		{
+			"model": "item", 
+			"name": "Cost", 
+			"code": "cost",
+			"type": "number"
+		},
+		{
+			"model": "item", 
+			"name": "Type", 
+			"code": "type",
+			"type": "d.item.type"
+		},
+		{
+			"model": "item", 
+			"name": "Photo", 
+			"code": "photo",
+			"type": "file",
+			"opts": {
+				"image": {
+					"width": 400,
+					"height": 300,
+					"aspect": 1.5
+				}
+			}
+		}
+	],
+	"createQuery": [
+		{
+			"name": "Item",
+			"code": "item"
+		},
+		{
+			"name": "List",
+			"code": "list",
+			"parent": "item",
+			"query": [
+				"{\"data\": \"begin\"}",
+				"select",
+				"    {\"prop\": \"a.id\", \"as\": \"id\"},",
+				"    {\"prop\": \"a.name\", \"as\": \"name\"},",
+				"    {\"prop\": \"a.cost\", \"as\": \"cost\"},",
+				"    {\"prop\": \"a.date\", \"as\": \"date\"},",
+				"    {\"prop\": \"a.photo\", \"as\": \"photo\"},",
+				"    {\"prop\": \"a.type\", \"as\": \"type\"}",
+				"{\"data\": \"end\"}",
+				"",
+				"{\"count\": \"begin\"}",
+				"select",
+				"    count (*) as num",
+				"{\"count\": \"end\"}",
+				"",
+				"from",
+				"    {\"model\": \"item\", \"alias\": \"a\"}",
+				"",
+				"{\"where\": \"empty\"}",
+				"",
+				"{\"order\": \"empty\"}",
+				"",
+				"limit {\"param\": \"limit\"}",
+				"offset {\"param\": \"offset\"}"
+			]
+		},
+		{
+			"name": "Item",
+			"code": "item",
+			"parent": "t"
+		},
+		{
+			"name": "Comment",
+			"code": "comment",
+			"parent": "t.item",
+			"query": [
+				"{\"data\": \"begin\"}",
+				"select",
+				"    {\"prop\": \"a.id\", \"as\": \"id\"},",
+				"    {\"prop\": \"a.item\", \"as\": \"item\"},",
+				"    {\"prop\": \"a.date\", \"as\": \"date\"},",
+				"    {\"prop\": \"a.text\", \"as\": \"text\"}",
+				"{\"data\": \"end\"}",
+				"",
+				"{\"count\": \"begin\"}",
+				"select",
+				"    count (*) as num",
+				"{\"count\": \"end\"}",
+				"",
+				"from",
+				"    {\"model\": \"t.item.comment\", \"alias\": \"a\"}",
+				"",
+				"{\"where\": \"empty\"}",
+				"",
+				"{\"order\": \"empty\"}",
+				"",
+				"limit {\"param\": \"limit\"}",
+				"offset {\"param\": \"offset\"}"
+			]
+		}
+	],
+	"createRecord": [
+		{
+			"_model": "d.item.type",
+			"name": "Videocard"
+		},
+		{
+			"_model": "d.item.type",
+			"name": "Processor"
+		},
+		{
+			"_model": "d.item.type",
+			"name": "Motherboard"
+		},
+		{
+			"_model": "objectum.menu",
+			"name": "User",
+			"code": "user",
+			"_ref": "userMenu"
+		},
+		{
+			"_model": "objectum.menuItem",
+			"menu": {
+				"_ref": "userMenu"
+			},
+			"name": "Items",
+			"icon": "fas fa-list",
+			"order": 1,
+			"path": "/model_list/item"
+		},
+		{
+			"_model": "objectum.menuItem",
+			"menu": {
+				"_ref": "userMenu"
+			},
+			"name": "Dictionary",
+			"icon": "fas fa-book",
+			"order": 2,
+			"_ref": "dictionaryMenuItem"
+		},
+		{
+			"_model": "objectum.menuItem",
+			"menu": {
+				"_ref": "userMenu"
+			},
+			"name": "Item type",
+			"icon": "fas fa-book",
+			"parent": {
+				"_ref": "dictionaryMenuItem"
+			},
+			"order": 1,
+			"path": "/model_list/d_item_type"
+		},
+		{
+			"_model": "objectum.role",
+			"name": "User",
+			"code": "user",
+			"menu": {
+				"_ref": "userMenu"
+			},
+			"_ref": "userRole"
+		},
+		{
+			"_model": "objectum.user",
+			"name": "User",
+			"login": "user",
+			"password": "12DEA96FEC20593566AB75692C9949596833ADC9",
+			"role": {
+				"_ref": "userRole"
+			}
+		},
+		{
+			"_model": "objectum.menu",
+			"name": "Guest",
+			"code": "guest",
+			"_ref": "guestMenu"
+		},
+		{
+			"_model": "objectum.menuItem",
+			"menu": {
+				"_ref": "guestMenu"
+			},
+			"name": "Items",
+			"icon": "fas fa-list",
+			"order": 1,
+			"path": "/model_list/item"
+		},
+		{
+			"_model": "objectum.role",
+			"name": "Guest",
+			"code": "guest",
+			"menu": {
+				"_ref": "guestMenu"
+			},
+			"_ref": "guestRole"
+		},
+		{
+			"_model": "objectum.user",
+			"name": "Guest",
+			"login": "guest",
+			"password": "35675E68F4B5AF7B995D9205AD0FC43842F16450",
+			"role": {
+				"_ref": "guestRole"
+			}
+		}
+	]
+}
