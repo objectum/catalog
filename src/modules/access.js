@@ -43,6 +43,9 @@ function _accessRead ({store, model, record}) {
 	let modelPath = model.getPath ();
 	
 	if (store.roleCode == "guest") {
+		if (modelPath == "objectum.user") {
+			return record.login == "guest";
+		}
 		return map.guest.read [modelPath];
 	}
 	return true;

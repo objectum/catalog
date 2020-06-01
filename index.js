@@ -4,6 +4,7 @@ import fs from "fs";
 import {fileURLToPath} from "url";
 import {dirname} from "path";
 
+import ItemModel from "./src/models/ItemServerModel.js";
 import adminMethods from "./src/modules/admin.js";
 import accessMethods from "./src/modules/access.js";
 
@@ -15,6 +16,7 @@ global.config = config;
 
 const proxy = new Proxy ();
 
+proxy.register ("item", ItemModel);
 proxy.registerAdminMethods (adminMethods);
 proxy.registerAccessMethods (accessMethods);
 

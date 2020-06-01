@@ -3,13 +3,26 @@
 
 import React from "react";
 import {Record, factory} from "objectum-client";
+import {Action} from "objectum-react";
 
 class ItemModel extends Record {
 	static _renderGrid ({grid, store}) {
+		let actions = [
+			...grid.props.children,
+			<Action label="Server action: getComments" onClickSelected={async ({progress, id}) => {
+				let recs = await store.remote ({
+					model: "item",
+					method: "getComments",
+					id,
+					progress
+				});
+				return JSON.stringify (recs)
+			}} />
+		];
 		return React.cloneElement (grid, {
 			label: "Items",
 			onRenderTable: ItemModel.onRenderTable,
-			children: store.roleCode === "guest" ? null : grid.props.children
+			children: store.roleCode === "guest" ? null : actions
 		});
 	}
 	
