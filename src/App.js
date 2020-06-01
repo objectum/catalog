@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import {Store} from "objectum-client";
-import {ObjectumApp, ModelList, Action} from "objectum-react";
+import {ObjectumApp, ModelList, Action, StringField} from "objectum-react";
 import crypto from "crypto";
 
 import ItemModel from "./models/ItemModel";
@@ -50,11 +50,13 @@ class App extends Component {
 					<div className="m-2">
 						<div className="text-right py-1 border">
 							<Action label="Admin action: readFile" onClick={async ({progress}) => {
-								return await store.remote ({
-									model: "admin",
-									method: "readFile",
-									filename: "package.json",
-									progress
+								me.setState ({
+									fileData: await store.remote ({
+										model: "admin",
+										method: "readFile",
+										filename: "package.json",
+										progress
+									})
 								});
 							}} />
 							<Action label="Admin action: increaseCost" onClick={async () => {
@@ -70,6 +72,9 @@ class App extends Component {
 								app.setState ({sid: ""});
 								me.setState ({roleCode: ""});
 							}} />
+							{me.state.fileData && <div className="p-1">
+								<StringField textarea rows={15} value={me.state.fileData} />
+							</div>}
 						</div>
 						<ModelList store={store} model="item" refresh={me.state.refresh} />
 					</div>

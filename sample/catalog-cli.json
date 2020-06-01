@@ -162,7 +162,8 @@
 	"createRecord": [
 		{
 			"_model": "d.item.type",
-			"name": "Videocard"
+			"name": "Videocard",
+			"_ref": "videocardType"
 		},
 		{
 			"_model": "d.item.type",
@@ -224,7 +225,7 @@
 			"_model": "objectum.user",
 			"name": "User",
 			"login": "user",
-			"password": "12DEA96FEC20593566AB75692C9949596833ADC9",
+			"password": "user",
 			"role": {
 				"_ref": "userRole"
 			}
@@ -258,10 +259,40 @@
 			"_model": "objectum.user",
 			"name": "Guest",
 			"login": "guest",
-			"password": "35675E68F4B5AF7B995D9205AD0FC43842F16450",
+			"password": "guest",
 			"role": {
 				"_ref": "guestRole"
 			}
+		},
+		{
+			"_model": "item",
+			"name": "RTX 2060",
+			"date": "2020-06-01T19:27:38.292Z",
+			"type": {
+				"_ref": "videocardType"
+			},
+			"cost": "300",
+			"photo": "images/rtx2060.png"
+		},
+		{
+			"_model": "item",
+			"name": "RTX 2070",
+			"date": "2020-06-02T19:27:38.292Z",
+			"type": {
+				"_ref": "videocardType"
+			},
+			"cost": "500",
+			"photo": "images/rtx2070.png"
+		},
+		{
+			"_model": "item",
+			"name": "RTX 2080",
+			"date": "2020-06-03T19:27:38.292Z",
+			"type": {
+				"_ref": "videocardType"
+			},
+			"cost": "800",
+			"photo": "images/rtx2080.png"
 		}
 	]
 }
