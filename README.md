@@ -4,8 +4,10 @@ Objectum project example.
 Objectum ecosystem:
 * Javascript platform https://github.com/objectum/objectum  
 * Isomorhic javascript client https://github.com/objectum/objectum-client  
+* Proxy for server methods and access control https://github.com/objectum/objectum-proxy  
 * React components https://github.com/objectum/objectum-react  
 * Command-line interface (CLI) https://github.com/objectum/objectum-cli  
+* Objectum project example https://github.com/objectum/catalog 
 
 ## Install
 
@@ -36,11 +38,13 @@ mkdir /opt/objectum/projects/catalog/bin
 node store-create.js
 node store-import.js
 ```
+
 Create models, properties, queries, records:
 ```bash
 mkdir /opt/objectum/projects/catalog
 objectum-cli --file catalog-cli.json
 ```
+
 Run:
 ```bash
 cd /opt/objectum/server
@@ -48,6 +52,7 @@ node index.js
 cd /opt/objectum/projects/catalog
 node index.js
 ```
+
 Open URL http://127.0.0.1:3100
 
 Admin (developer):  
