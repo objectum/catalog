@@ -63,10 +63,22 @@
 			"type": "string"
 		},
 		{
+			"model": "item",
+			"name": "Description",
+			"code": "description",
+			"type": "string",
+			"opts": {
+				"wysiwyg": true
+			}
+		},
+		{
 			"model": "item", 
 			"name": "Cost", 
 			"code": "cost",
-			"type": "number"
+			"type": "number",
+			"opts": {
+				"min": 0
+			}
 		},
 		{
 			"model": "item", 
@@ -102,6 +114,7 @@
 				"select",
 				"    {\"prop\": \"a.id\", \"as\": \"id\"},",
 				"    {\"prop\": \"a.name\", \"as\": \"name\"},",
+				"    {\"prop\": \"a.description\", \"as\": \"description\"},",
 				"    {\"prop\": \"a.cost\", \"as\": \"cost\"},",
 				"    {\"prop\": \"a.date\", \"as\": \"date\"},",
 				"    {\"prop\": \"a.photo\", \"as\": \"photo\"},",
@@ -287,6 +300,14 @@
 		{
 			"_model": "item",
 			"name": "RTX 2080",
+			"description": [
+				"<ul>",
+				"<li>11GB GDDR6</span></li>",
+				"<li>CUDA Cores: 4352</span></li>",
+				"<li>Display Connectors: DisplayPort, HDMI, USB Type-C</span></li>",
+				"<li>Maximum Digital Resolution: 7680x4320</span></li>",
+				"</ul>"
+			],
 			"date": "2020-06-03T19:27:38.292Z",
 			"type": {
 				"_ref": "videocardType"

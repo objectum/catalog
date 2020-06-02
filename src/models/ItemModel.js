@@ -21,6 +21,7 @@ class ItemModel extends Record {
 		];
 		return React.cloneElement (grid, {
 			label: "Items",
+			query: "item.list",
 			onRenderTable: ItemModel.onRenderTable,
 			children: store.roleCode === "guest" ? null : actions
 		});
@@ -48,6 +49,10 @@ class ItemModel extends Record {
 									<div>
 										<strong className="mr-1">Cost:</strong>{rec.cost}
 									</div>
+									<div>
+										<strong>Description:</strong>
+									</div>
+									<div dangerouslySetInnerHTML={{__html: `${record.description || ""}`}} />
 								</div>
 							</div>
 							<div className="col-6 text-right">
@@ -71,6 +76,9 @@ class ItemModel extends Record {
 				],
 				[
 					"type", "cost"
+				],
+				[
+					"description"
 				],
 				[
 					"photo"

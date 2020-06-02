@@ -28,6 +28,7 @@ class App extends Component {
 		store.setUrl ("/api");
 		store.register ("item", ItemModel);
 		store.register ("t.item.comment", ItemCommentModel);
+		window.store = store;
 	}
 	
 	async onConnect () {
