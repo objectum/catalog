@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
+  "proxy": "http://localhost:3100",
   "dependencies": {
     "express": "^4.17.1",
     "express-http-proxy": "^1.6.0",
