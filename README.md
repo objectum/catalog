@@ -67,6 +67,14 @@ User (role "User"):
 login: user  
 password: user
 
+Run in development mode:
+```bash
+cd /opt/objectum/projects/catalog
+npm start
+```
+
+Open URL http://127.0.0.1:3000
+
 ## Author
 
 **Dmitriy Samortsev**
