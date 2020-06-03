@@ -39,16 +39,20 @@ node store-create.js
 node store-import.js
 ```
 
+Run objectum:
+```bash
+cd /opt/objectum/server
+node index.js
+```
+
 Create models, properties, queries, records:
 ```bash
 cd /opt/objectum/projects/catalog
 objectum-cli --file catalog-cli.json
 ```
 
-Run:
+Run project:
 ```bash
-cd /opt/objectum/server
-node index.js
 cd /opt/objectum/projects/catalog
 node index.js
 ```
