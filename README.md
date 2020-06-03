@@ -34,14 +34,14 @@ cp -r /opt/objectum/projects/catalog/sample/* /opt/objectum/projects/catalog
 
 Create store:
 ```bash
-mkdir /opt/objectum/projects/catalog/bin
+cd /opt/objectum/projects/catalog/bin
 node store-create.js
 node store-import.js
 ```
 
 Create models, properties, queries, records:
 ```bash
-mkdir /opt/objectum/projects/catalog
+cd /opt/objectum/projects/catalog
 objectum-cli --file catalog-cli.json
 ```
 

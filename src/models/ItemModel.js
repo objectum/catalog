@@ -7,6 +7,7 @@ import {Action} from "objectum-react";
 
 class ItemModel extends Record {
 	static _renderGrid ({grid, store}) {
+		// Additional buttons in grid
 		let actions = [
 			...grid.props.children,
 			<Action label="Server action: getComments" onClickSelected={async ({progress, id}) => {
@@ -20,9 +21,9 @@ class ItemModel extends Record {
 			}} />
 		];
 		return React.cloneElement (grid, {
-			label: "Items",
-			query: "item.list",
-			onRenderTable: ItemModel.onRenderTable,
+			label: "Items", // grid label
+			query: "item.list", // grid query
+			onRenderTable: ItemModel.onRenderTable, // grid table custom render
 			children: store.roleCode === "guest" ? null : actions
 		});
 	}
@@ -67,6 +68,7 @@ class ItemModel extends Record {
 		);
 	}
 	
+	// item form layout
 	static _layout () {
 		return {
 			"Information": [
@@ -90,6 +92,7 @@ class ItemModel extends Record {
 		};
 	}
 	
+	// new item render
 	static _renderField ({field, store}) {
 		if (field.props.property === "date") {
 			return React.cloneElement (field, {value: new Date (), showTime: true});
@@ -98,6 +101,7 @@ class ItemModel extends Record {
 		}
 	}
 
+	// item render
 	_renderField ({field, store}) {
 		if (field.props.property === "date") {
 			return React.cloneElement (field, {showTime: true});
