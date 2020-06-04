@@ -21,6 +21,12 @@ Install platform
 mkdir /opt/objectum
 objectum-cli --create-platform --path /opt/objectum
 ```
+objectum-cli defaults: 
+```
+--redis-host 127.0.0.1
+--redis-port 6379
+--objectum-port 8200
+```
 
 Install project:
 ```bash
@@ -30,6 +36,18 @@ git clone https://github.com/objectum/catalog.git .
 npm install
 npm run build
 cp -r /opt/objectum/projects/catalog/sample/* /opt/objectum/projects/catalog
+```
+/opt/objectum/projects/catalog/config.json defaults: 
+```
+{
+    "port": 3100 - project port 
+    "database": {
+        "host": "localhost", - host and port of PostgreSQL server
+        "port": 5432,
+        "dbPassword": "1", - password of database user "catalog"
+        "dbaPassword": "12345" - postgres password
+    },
+    "adminPassword": "sha1 hash" - password of project administrator. Default: "admin"
 ```
 
 Create store:
