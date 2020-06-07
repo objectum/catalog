@@ -10,16 +10,14 @@ function timeout (ms = 500) {
 
 class ItemModel extends Record {
 	async getComments ({progress}) {
-		let me = this;
-
 		for (let i = 0; i < 10; i ++) {
 			await timeout (1000);
 			progress ({label: "processing", value: i + 1, max: 10});
 		}
-		return await me.store.getRecs ({
+		return await this.store.getRecs ({
 			model: "t.item.comment",
 			filters: [
-				["item", "=", me.id]
+				["item", "=", this.id]
 			]
 		});
 	}

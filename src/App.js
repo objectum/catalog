@@ -16,22 +16,18 @@ class App extends Component {
 	constructor (props) {
 		super (props);
 
-		let me = this;
-
-		me.state = {
+		this.state = {
 			roleCode: "guest",
 			refresh: false
 		};
-		me.onConnect = me.onConnect.bind (me);
-		me.onCustomRender = me.onCustomRender.bind (me);
-		
 		store.setUrl ("/api");
 		store.register ("item", ItemModel);
 		store.register ("t.item.comment", ItemCommentModel);
+		
 		window.store = store;
 	}
 	
-	async onConnect () {
+	onConnect = async () => {
 		await store.getDict ("d.item.type");
 		
 		this.setState ({
@@ -39,10 +35,34 @@ class App extends Component {
 		});
 	}
 	
-	onCustomRender ({content, app}) {
-		let me = this;
+	readFileAction = async ({progress}) => {
+		this.setState ({
+			fileData: await store.remote ({
+				model: "admin",
+				method: "readFile",
+				filename: "package.json",
+				progress
+			})
+		});
+	}
+	
+	increaseCostAction = async () => {
+		let result = await store.remote ({
+			model: "admin",
+			method: "increaseCost"
+		});
+		this.setState ({refresh: !this.state.refresh});
 		
-		if (me.state.roleCode === "guest") {
+		return result;
+	}
+	
+	signIn = (app) => {
+		app.setState ({sid: ""});
+		this.setState ({roleCode: ""});
+	}
+	
+	onCustomRender = ({content, app}) => {
+		if (this.state.roleCode === "guest") {
 			if (!app.state.sid) {
 				return <div />;
 			}
@@ -50,34 +70,14 @@ class App extends Component {
 				<div className="container">
 					<div className="m-2">
 						<div className="text-right py-1 border">
-							<Action label="Admin action: readFile" onClick={async ({progress}) => {
-								me.setState ({
-									fileData: await store.remote ({
-										model: "admin",
-										method: "readFile",
-										filename: "package.json",
-										progress
-									})
-								});
-							}} />
-							<Action label="Admin action: increaseCost" onClick={async () => {
-								let result = await store.remote ({
-									model: "admin",
-									method: "increaseCost"
-								});
-								me.setState ({refresh: !me.state.refresh});
-								
-								return result;
-							}} />
-							<Action label="Sign In" onClick={() => {
-								app.setState ({sid: ""});
-								me.setState ({roleCode: ""});
-							}} />
-							{me.state.fileData && <div className="p-1">
-								<StringField textarea rows={15} value={me.state.fileData} />
+							<Action label="Admin action: readFile" onClick={this.readFileAction} />
+							<Action label="Admin action: increaseCost" onClick={this.increaseCostAction} />
+							<Action label="Sign In" onClick={() => this.signIn (app)} />
+							{this.state.fileData && <div className="p-1">
+								<StringField textarea rows={15} value={this.state.fileData} />
 							</div>}
 						</div>
-						<ModelList store={store} model="item" refresh={me.state.refresh} />
+						<ModelList store={store} model="item" refresh={this.state.refresh} />
 					</div>
 				</div>
 			);
@@ -85,14 +85,12 @@ class App extends Component {
 	}
 	
 	render () {
-		let me = this;
-		
 		return (
 			<ObjectumApp
 				store={store}
 				name="Catalog"
-				onConnect={me.onConnect}
-				onCustomRender={me.onCustomRender}
+				onConnect={this.onConnect}
+				onCustomRender={this.onCustomRender}
 				username="guest"
 				password={crypto.createHash ("sha1").update ("guest").digest ("hex").toUpperCase ()}
 			/>

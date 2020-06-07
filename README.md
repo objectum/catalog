@@ -1,6 +1,8 @@
 # catalog
 Objectum project example.
 
+Requirements: [NodeJS (ES Modules)](https://nodejs.org), [PostgreSQL](https://www.postgresql.org/download/), [Redis](https://redis.io/)
+
 Objectum ecosystem:
 * Javascript platform https://github.com/objectum/objectum  
 * Isomorhic javascript client https://github.com/objectum/objectum-client  

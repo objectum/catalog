@@ -1,4 +1,4 @@
-let $o = require ("/opt/objectum/server/objectum");
+let $o = require ("../../../server/objectum");
 
 $o.db.execute ({
 	"code": "catalog",
