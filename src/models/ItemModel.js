@@ -92,10 +92,17 @@ class ItemModel extends Record {
 		};
 	}
 	
+	static _renderForm ({form, store}) {
+		return React.cloneElement (form, {
+			defaults: {
+				date: new Date ()
+			}
+		});
+	}
 	// new item render
 	static _renderField ({field, store}) {
 		if (field.props.property === "date") {
-			return React.cloneElement (field, {value: new Date (), showTime: true});
+			return React.cloneElement (field, {showTime: true});
 		} else {
 			return field;
 		}
@@ -103,11 +110,7 @@ class ItemModel extends Record {
 
 	// item render
 	_renderField ({field, store}) {
-		if (field.props.property === "date") {
-			return React.cloneElement (field, {showTime: true});
-		} else {
-			return field;
-		}
+		return ItemModel._renderField ({field, store});
 	}
 };
 

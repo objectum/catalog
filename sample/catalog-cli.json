@@ -93,8 +93,8 @@
 			"type": "file",
 			"opts": {
 				"image": {
-					"width": 400,
-					"height": 300,
+					"width": 300,
+					"height": 200,
 					"aspect": 1.5
 				}
 			}
@@ -163,7 +163,9 @@
 				"from",
 				"    {\"model\": \"t.item.comment\", \"alias\": \"a\"}",
 				"",
-				"{\"where\": \"empty\"}",
+				"{\"where\": \"begin\"}",
+				"    {\"prop\": \"a.item\"} = {\"param\": \"item\"}",
+				"{\"where\": \"end\"}",
 				"",
 				"{\"order\": \"empty\"}",
 				"",

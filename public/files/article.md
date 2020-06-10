@@ -123,6 +123,13 @@ npm start
 * Роли - здесь задается список ролей пользователей
 * Пользователи - добавление пользователей
 
+----------
+
+![auth](objectum-screen-6.png)
+
+----------
+
+
 ## Пакетное добавление данных в хранилище
 Структура хранилища формируется с помощью UI, но для быстрого добавления большого количества данных лучше использовать objectum-cli.  
 <details>
@@ -589,10 +596,18 @@ class ItemModel extends Record {
         };
     }
     
+	static _renderForm ({form, store}) {
+		return React.cloneElement (form, {
+			defaults: {
+				date: new Date ()
+			}
+		});
+	}
+
     // new item render
     static _renderField ({field, store}) {
         if (field.props.property === "date") {
-            return React.cloneElement (field, {value: new Date (), showTime: true});
+            return React.cloneElement (field, {showTime: true});
         } else {
             return field;
         }
@@ -600,11 +615,7 @@ class ItemModel extends Record {
 
     // item render
     _renderField ({field, store}) {
-        if (field.props.property === "date") {
-            return React.cloneElement (field, {showTime: true});
-        } else {
-            return field;
-        }
+		return ItemModel._renderField ({field, store});
     }
 };
 
@@ -614,8 +625,18 @@ export default ItemModel;
 
 В моделях зарезервированы названия методов для решения различных задач: 
 * _renderGrid - модель "item" имеет отображение по умолчанию в маршруте /model_list/item. Отображает компонент ModelList, который вызывает данный метод при рендере Grid.
-* _layout - запись отображает компонент ModelRecord, который вызывает данный метод для получения разметки. Если метод не определен, то макет формы используется стандартный, где все поля по одной на строку, а табличные части в отдельных закладках формы. 
+* _layout - запись отображает компонент ModelRecord, который вызывает данный метод для получения разметки. Если метод не определен, то макет формы используется стандартный, где все поля по одной на строку, а табличные части в отдельных закладках формы.
+* _renderForm - рендер формы 
 * _renderField - рендер поля. Статичный метод для новой записи и обычный метод для существующей записи.
+
+Модифицированная форма:
+
+----------
+
+![auth](objectum-screen-5.png)
+
+----------
+
 
 ## Сервер
 Подключение в index.js:
@@ -848,6 +869,13 @@ await store.remote ({
 * Tooltip - всплывающая подсказка
 * Fade - анимация плавного отображения 
 * Action - кнопка для выполнения функции 
+
+## ObjectumApp
+
+props:
+* locale - локализация. Есть "ru".
+* onCustomRender - свой рендер приложения
+* username, password - автоматическая авторизация под выбранным пользователем (guest). 
 
 ### Grid
 Для выборки данных компоненту нужно указать запрос (query) или модель (model). Предоставляет следующие функции:

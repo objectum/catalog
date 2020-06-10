@@ -90,9 +90,9 @@ class App extends Component {
 				store={store}
 				name="Catalog"
 				onConnect={this.onConnect}
-				_onCustomRender={this.onCustomRender}
-				_username="guest"
-				_password={crypto.createHash ("sha1").update ("guest").digest ("hex").toUpperCase ()}
+				onCustomRender={this.onCustomRender}
+				username="guest"
+				password={crypto.createHash ("sha1").update ("guest").digest ("hex").toUpperCase ()}
 			/>
 		);
 	}
