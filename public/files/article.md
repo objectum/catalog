@@ -93,323 +93,323 @@ npm start
 
 ```json
 {
-	"createModel": [
-		{
-			"name": "Item", 
-			"code": "item"
-		},
-		{
-			"name": "Item", 
-			"code": "item",
-			"parent": "d"
-		},
-		{
-			"name": "Type", 
-			"code": "type",
-			"parent": "d.item"
-		},
-		{
-			"name": "Item", 
-			"code": "item",
-			"parent": "t"
-		},
-		{
-			"name": "Comment", 
-			"code": "comment",
-			"parent": "t.item"
-		}
-	],
-	"createProperty": [
-		{
-			"model": "d.item.type", 
-			"name": "Name", 
-			"code": "name",
-			"type": "string"
-		},
-		{
-			"model": "t.item.comment", 
-			"name": "Item", 
-			"code": "item",
-			"type": "item"
-		},
-		{
-			"model": "t.item.comment", 
-			"name": "Date",
-			"code": "date",
-			"type": "date"
-		},
-		{
-			"model": "t.item.comment",
-			"name": "Text",
-			"code": "text",
-			"type": "string"
-		},
-		{
-			"model": "item", 
-			"name": "Date", 
-			"code": "date",
-			"type": "date"
-		},
-		{
-			"model": "item", 
-			"name": "Name", 
-			"code": "name",
-			"type": "string"
-		},
-		{
-			"model": "item",
-			"name": "Description",
-			"code": "description",
-			"type": "string",
-			"opts": {
-				"wysiwyg": true
-			}
-		},
-		{
-			"model": "item", 
-			"name": "Cost", 
-			"code": "cost",
-			"type": "number",
-			"opts": {
-				"min": 0
-			}
-		},
-		{
-			"model": "item", 
-			"name": "Type", 
-			"code": "type",
-			"type": "d.item.type"
-		},
-		{
-			"model": "item", 
-			"name": "Photo", 
-			"code": "photo",
-			"type": "file",
-			"opts": {
-				"image": {
-					"width": 400,
-					"height": 300,
-					"aspect": 1.5
-				}
-			}
-		}
-	],
-	"createQuery": [
-		{
-			"name": "Item",
-			"code": "item"
-		},
-		{
-			"name": "List",
-			"code": "list",
-			"parent": "item",
-			"query": [
-				"{\"data\": \"begin\"}",
-				"select",
-				"    {\"prop\": \"a.id\", \"as\": \"id\"},",
-				"    {\"prop\": \"a.name\", \"as\": \"name\"},",
-				"    {\"prop\": \"a.description\", \"as\": \"description\"},",
-				"    {\"prop\": \"a.cost\", \"as\": \"cost\"},",
-				"    {\"prop\": \"a.date\", \"as\": \"date\"},",
-				"    {\"prop\": \"a.photo\", \"as\": \"photo\"},",
-				"    {\"prop\": \"a.type\", \"as\": \"type\"}",
-				"{\"data\": \"end\"}",
-				"",
-				"{\"count\": \"begin\"}",
-				"select",
-				"    count (*) as num",
-				"{\"count\": \"end\"}",
-				"",
-				"from",
-				"    {\"model\": \"item\", \"alias\": \"a\"}",
-				"",
-				"{\"where\": \"empty\"}",
-				"",
-				"{\"order\": \"empty\"}",
-				"",
-				"limit {\"param\": \"limit\"}",
-				"offset {\"param\": \"offset\"}"
-			]
-		},
-		{
-			"name": "Item",
-			"code": "item",
-			"parent": "t"
-		},
-		{
-			"name": "Comment",
-			"code": "comment",
-			"parent": "t.item",
-			"query": [
-				"{\"data\": \"begin\"}",
-				"select",
-				"    {\"prop\": \"a.id\", \"as\": \"id\"},",
-				"    {\"prop\": \"a.item\", \"as\": \"item\"},",
-				"    {\"prop\": \"a.date\", \"as\": \"date\"},",
-				"    {\"prop\": \"a.text\", \"as\": \"text\"}",
-				"{\"data\": \"end\"}",
-				"",
-				"{\"count\": \"begin\"}",
-				"select",
-				"    count (*) as num",
-				"{\"count\": \"end\"}",
-				"",
-				"from",
-				"    {\"model\": \"t.item.comment\", \"alias\": \"a\"}",
-				"",
-				"{\"where\": \"empty\"}",
-				"",
-				"{\"order\": \"empty\"}",
-				"",
-				"limit {\"param\": \"limit\"}",
-				"offset {\"param\": \"offset\"}"
-			]
-		}
-	],
-	"createRecord": [
-		{
-			"_model": "d.item.type",
-			"name": "Videocard",
-			"_ref": "videocardType"
-		},
-		{
-			"_model": "d.item.type",
-			"name": "Processor"
-		},
-		{
-			"_model": "d.item.type",
-			"name": "Motherboard"
-		},
-		{
-			"_model": "objectum.menu",
-			"name": "User",
-			"code": "user",
-			"_ref": "userMenu"
-		},
-		{
-			"_model": "objectum.menuItem",
-			"menu": {
-				"_ref": "userMenu"
-			},
-			"name": "Items",
-			"icon": "fas fa-list",
-			"order": 1,
-			"path": "/model_list/item"
-		},
-		{
-			"_model": "objectum.menuItem",
-			"menu": {
-				"_ref": "userMenu"
-			},
-			"name": "Dictionary",
-			"icon": "fas fa-book",
-			"order": 2,
-			"_ref": "dictionaryMenuItem"
-		},
-		{
-			"_model": "objectum.menuItem",
-			"menu": {
-				"_ref": "userMenu"
-			},
-			"name": "Item type",
-			"icon": "fas fa-book",
-			"parent": {
-				"_ref": "dictionaryMenuItem"
-			},
-			"order": 1,
-			"path": "/model_list/d_item_type"
-		},
-		{
-			"_model": "objectum.role",
-			"name": "User",
-			"code": "user",
-			"menu": {
-				"_ref": "userMenu"
-			},
-			"_ref": "userRole"
-		},
-		{
-			"_model": "objectum.user",
-			"name": "User",
-			"login": "user",
-			"password": "user",
-			"role": {
-				"_ref": "userRole"
-			}
-		},
-		{
-			"_model": "objectum.menu",
-			"name": "Guest",
-			"code": "guest",
-			"_ref": "guestMenu"
-		},
-		{
-			"_model": "objectum.menuItem",
-			"menu": {
-				"_ref": "guestMenu"
-			},
-			"name": "Items",
-			"icon": "fas fa-list",
-			"order": 1,
-			"path": "/model_list/item"
-		},
-		{
-			"_model": "objectum.role",
-			"name": "Guest",
-			"code": "guest",
-			"menu": {
-				"_ref": "guestMenu"
-			},
-			"_ref": "guestRole"
-		},
-		{
-			"_model": "objectum.user",
-			"name": "Guest",
-			"login": "guest",
-			"password": "guest",
-			"role": {
-				"_ref": "guestRole"
-			}
-		},
-		{
-			"_model": "item",
-			"name": "RTX 2060",
-			"date": "2020-06-01T19:27:38.292Z",
-			"type": {
-				"_ref": "videocardType"
-			},
-			"cost": "300",
-			"photo": "images/rtx2060.png"
-		},
-		{
-			"_model": "item",
-			"name": "RTX 2070",
-			"date": "2020-06-02T19:27:38.292Z",
-			"type": {
-				"_ref": "videocardType"
-			},
-			"cost": "500",
-			"photo": "images/rtx2070.png"
-		},
-		{
-			"_model": "item",
-			"name": "RTX 2080",
-			"description": [
-				"<ul>",
-				"<li>11GB GDDR6</span></li>",
-				"<li>CUDA Cores: 4352</span></li>",
-				"<li>Display Connectors: DisplayPort, HDMI, USB Type-C</span></li>",
-				"<li>Maximum Digital Resolution: 7680x4320</span></li>",
-				"</ul>"
-			],
-			"date": "2020-06-03T19:27:38.292Z",
-			"type": {
-				"_ref": "videocardType"
-			},
-			"cost": "800",
-			"photo": "images/rtx2080.png"
-		}
-	]
+    "createModel": [
+        {
+            "name": "Item", 
+            "code": "item"
+        },
+        {
+            "name": "Item", 
+            "code": "item",
+            "parent": "d"
+        },
+        {
+            "name": "Type", 
+            "code": "type",
+            "parent": "d.item"
+        },
+        {
+            "name": "Item", 
+            "code": "item",
+            "parent": "t"
+        },
+        {
+            "name": "Comment", 
+            "code": "comment",
+            "parent": "t.item"
+        }
+    ],
+    "createProperty": [
+        {
+            "model": "d.item.type", 
+            "name": "Name", 
+            "code": "name",
+            "type": "string"
+        },
+        {
+            "model": "t.item.comment", 
+            "name": "Item", 
+            "code": "item",
+            "type": "item"
+        },
+        {
+            "model": "t.item.comment", 
+            "name": "Date",
+            "code": "date",
+            "type": "date"
+        },
+        {
+            "model": "t.item.comment",
+            "name": "Text",
+            "code": "text",
+            "type": "string"
+        },
+        {
+            "model": "item", 
+            "name": "Date", 
+            "code": "date",
+            "type": "date"
+        },
+        {
+            "model": "item", 
+            "name": "Name", 
+            "code": "name",
+            "type": "string"
+        },
+        {
+            "model": "item",
+            "name": "Description",
+            "code": "description",
+            "type": "string",
+            "opts": {
+                "wysiwyg": true
+            }
+        },
+        {
+            "model": "item", 
+            "name": "Cost", 
+            "code": "cost",
+            "type": "number",
+            "opts": {
+                "min": 0
+            }
+        },
+        {
+            "model": "item", 
+            "name": "Type", 
+            "code": "type",
+            "type": "d.item.type"
+        },
+        {
+            "model": "item", 
+            "name": "Photo", 
+            "code": "photo",
+            "type": "file",
+            "opts": {
+                "image": {
+                    "width": 400,
+                    "height": 300,
+                    "aspect": 1.5
+                }
+            }
+        }
+    ],
+    "createQuery": [
+        {
+            "name": "Item",
+            "code": "item"
+        },
+        {
+            "name": "List",
+            "code": "list",
+            "parent": "item",
+            "query": [
+                "{\"data\": \"begin\"}",
+                "select",
+                "    {\"prop\": \"a.id\", \"as\": \"id\"},",
+                "    {\"prop\": \"a.name\", \"as\": \"name\"},",
+                "    {\"prop\": \"a.description\", \"as\": \"description\"},",
+                "    {\"prop\": \"a.cost\", \"as\": \"cost\"},",
+                "    {\"prop\": \"a.date\", \"as\": \"date\"},",
+                "    {\"prop\": \"a.photo\", \"as\": \"photo\"},",
+                "    {\"prop\": \"a.type\", \"as\": \"type\"}",
+                "{\"data\": \"end\"}",
+                "",
+                "{\"count\": \"begin\"}",
+                "select",
+                "    count (*) as num",
+                "{\"count\": \"end\"}",
+                "",
+                "from",
+                "    {\"model\": \"item\", \"alias\": \"a\"}",
+                "",
+                "{\"where\": \"empty\"}",
+                "",
+                "{\"order\": \"empty\"}",
+                "",
+                "limit {\"param\": \"limit\"}",
+                "offset {\"param\": \"offset\"}"
+            ]
+        },
+        {
+            "name": "Item",
+            "code": "item",
+            "parent": "t"
+        },
+        {
+            "name": "Comment",
+            "code": "comment",
+            "parent": "t.item",
+            "query": [
+                "{\"data\": \"begin\"}",
+                "select",
+                "    {\"prop\": \"a.id\", \"as\": \"id\"},",
+                "    {\"prop\": \"a.item\", \"as\": \"item\"},",
+                "    {\"prop\": \"a.date\", \"as\": \"date\"},",
+                "    {\"prop\": \"a.text\", \"as\": \"text\"}",
+                "{\"data\": \"end\"}",
+                "",
+                "{\"count\": \"begin\"}",
+                "select",
+                "    count (*) as num",
+                "{\"count\": \"end\"}",
+                "",
+                "from",
+                "    {\"model\": \"t.item.comment\", \"alias\": \"a\"}",
+                "",
+                "{\"where\": \"empty\"}",
+                "",
+                "{\"order\": \"empty\"}",
+                "",
+                "limit {\"param\": \"limit\"}",
+                "offset {\"param\": \"offset\"}"
+            ]
+        }
+    ],
+    "createRecord": [
+        {
+            "_model": "d.item.type",
+            "name": "Videocard",
+            "_ref": "videocardType"
+        },
+        {
+            "_model": "d.item.type",
+            "name": "Processor"
+        },
+        {
+            "_model": "d.item.type",
+            "name": "Motherboard"
+        },
+        {
+            "_model": "objectum.menu",
+            "name": "User",
+            "code": "user",
+            "_ref": "userMenu"
+        },
+        {
+            "_model": "objectum.menuItem",
+            "menu": {
+                "_ref": "userMenu"
+            },
+            "name": "Items",
+            "icon": "fas fa-list",
+            "order": 1,
+            "path": "/model_list/item"
+        },
+        {
+            "_model": "objectum.menuItem",
+            "menu": {
+                "_ref": "userMenu"
+            },
+            "name": "Dictionary",
+            "icon": "fas fa-book",
+            "order": 2,
+            "_ref": "dictionaryMenuItem"
+        },
+        {
+            "_model": "objectum.menuItem",
+            "menu": {
+                "_ref": "userMenu"
+            },
+            "name": "Item type",
+            "icon": "fas fa-book",
+            "parent": {
+                "_ref": "dictionaryMenuItem"
+            },
+            "order": 1,
+            "path": "/model_list/d_item_type"
+        },
+        {
+            "_model": "objectum.role",
+            "name": "User",
+            "code": "user",
+            "menu": {
+                "_ref": "userMenu"
+            },
+            "_ref": "userRole"
+        },
+        {
+            "_model": "objectum.user",
+            "name": "User",
+            "login": "user",
+            "password": "user",
+            "role": {
+                "_ref": "userRole"
+            }
+        },
+        {
+            "_model": "objectum.menu",
+            "name": "Guest",
+            "code": "guest",
+            "_ref": "guestMenu"
+        },
+        {
+            "_model": "objectum.menuItem",
+            "menu": {
+                "_ref": "guestMenu"
+            },
+            "name": "Items",
+            "icon": "fas fa-list",
+            "order": 1,
+            "path": "/model_list/item"
+        },
+        {
+            "_model": "objectum.role",
+            "name": "Guest",
+            "code": "guest",
+            "menu": {
+                "_ref": "guestMenu"
+            },
+            "_ref": "guestRole"
+        },
+        {
+            "_model": "objectum.user",
+            "name": "Guest",
+            "login": "guest",
+            "password": "guest",
+            "role": {
+                "_ref": "guestRole"
+            }
+        },
+        {
+            "_model": "item",
+            "name": "RTX 2060",
+            "date": "2020-06-01T19:27:38.292Z",
+            "type": {
+                "_ref": "videocardType"
+            },
+            "cost": "300",
+            "photo": "images/rtx2060.png"
+        },
+        {
+            "_model": "item",
+            "name": "RTX 2070",
+            "date": "2020-06-02T19:27:38.292Z",
+            "type": {
+                "_ref": "videocardType"
+            },
+            "cost": "500",
+            "photo": "images/rtx2070.png"
+        },
+        {
+            "_model": "item",
+            "name": "RTX 2080",
+            "description": [
+                "<ul>",
+                "<li>11GB GDDR6</span></li>",
+                "<li>CUDA Cores: 4352</span></li>",
+                "<li>Display Connectors: DisplayPort, HDMI, USB Type-C</span></li>",
+                "<li>Maximum Digital Resolution: 7680x4320</span></li>",
+                "</ul>"
+            ],
+            "date": "2020-06-03T19:27:38.292Z",
+            "type": {
+                "_ref": "videocardType"
+            },
+            "cost": "800",
+            "photo": "images/rtx2080.png"
+        }
+    ]
 }
 ```
 Что всё это значит:
@@ -466,109 +466,109 @@ import {Record, factory} from "objectum-client";
 import {Action} from "objectum-react";
 
 class ItemModel extends Record {
-	static _renderGrid ({grid, store}) {
-		// Additional buttons in grid
-		let actions = [
-			...grid.props.children,
-			<Action label="Server action: getComments" onClickSelected={async ({progress, id}) => {
-				let recs = await store.remote ({
-					model: "item",
-					method: "getComments",
-					id,
-					progress
-				});
-				return JSON.stringify (recs)
-			}} />
-		];
-		return React.cloneElement (grid, {
-			label: "Items", // grid label
-			query: "item.list", // grid query
-			onRenderTable: ItemModel.onRenderTable, // grid table custom render
-			children: store.roleCode === "guest" ? null : actions
-		});
-	}
-	
-	static onRenderTable ({grid, cols, colMap, recs, store}) {
-		return (
-			<div className="p-1">
-				{recs.map ((rec, i) => {
-					let record = factory ({rsc: "record", data: Object.assign (rec, {_model: "item"}), store});
-					
-					return (
-						<div key={i} className={`row border-bottom my-1 p-1 no-gutters ${grid.state.selected === i ? "bg-secondary text-white" : ""}`} onClick={() => grid.onRowClick (i)} >
-							<div className="col-6">
-								<div className="p-1">
-									<div>
-										<strong className="mr-1">Name:</strong>{rec.name}
-									</div>
-									<div>
-										<strong className="mr-1">Date:</strong>{rec.date && rec.date.toLocaleString ()}
-									</div>
-									<div>
-										<strong className="mr-1">Type:</strong>{rec.type && store.dict ["d.item.type"][rec.type].name}
-									</div>
-									<div>
-										<strong className="mr-1">Cost:</strong>{rec.cost}
-									</div>
-									<div>
-										<strong>Description:</strong>
-									</div>
-									<div dangerouslySetInnerHTML={{__html: `${record.description || ""}`}} />
-								</div>
-							</div>
-							<div className="col-6 text-right">
-								{record.photo && <div>
-									 <img src={record.getRef ("photo")} className="img-fluid" width={400} height={300} alt={record.photo} />
-								</div>}
-							</div>
-						</div>
-					);
-				})}
-			</div>
-		);
-	}
-	
-	// item form layout
-	static _layout () {
-		return {
-			"Information": [
-				"id",
-				[
-					"name", "date"
-				],
-				[
-					"type", "cost"
-				],
-				[
-					"description"
-				],
-				[
-					"photo"
-				],
-				[
-					"t.item.comment"
-				]
-			]
-		};
-	}
-	
-	// new item render
-	static _renderField ({field, store}) {
-		if (field.props.property === "date") {
-			return React.cloneElement (field, {value: new Date (), showTime: true});
-		} else {
-			return field;
-		}
-	}
+    static _renderGrid ({grid, store}) {
+        // Additional buttons in grid
+        let actions = [
+            ...grid.props.children,
+            <Action label="Server action: getComments" onClickSelected={async ({progress, id}) => {
+                let recs = await store.remote ({
+                    model: "item",
+                    method: "getComments",
+                    id,
+                    progress
+                });
+                return JSON.stringify (recs)
+            }} />
+        ];
+        return React.cloneElement (grid, {
+            label: "Items", // grid label
+            query: "item.list", // grid query
+            onRenderTable: ItemModel.onRenderTable, // grid table custom render
+            children: store.roleCode === "guest" ? null : actions
+        });
+    }
+    
+    static onRenderTable ({grid, cols, colMap, recs, store}) {
+        return (
+            <div className="p-1">
+                {recs.map ((rec, i) => {
+                    let record = factory ({rsc: "record", data: Object.assign (rec, {_model: "item"}), store});
+                    
+                    return (
+                        <div key={i} className={`row border-bottom my-1 p-1 no-gutters ${grid.state.selected === i ? "bg-secondary text-white" : ""}`} onClick={() => grid.onRowClick (i)} >
+                            <div className="col-6">
+                                <div className="p-1">
+                                    <div>
+                                        <strong className="mr-1">Name:</strong>{rec.name}
+                                    </div>
+                                    <div>
+                                        <strong className="mr-1">Date:</strong>{rec.date && rec.date.toLocaleString ()}
+                                    </div>
+                                    <div>
+                                        <strong className="mr-1">Type:</strong>{rec.type && store.dict ["d.item.type"][rec.type].name}
+                                    </div>
+                                    <div>
+                                        <strong className="mr-1">Cost:</strong>{rec.cost}
+                                    </div>
+                                    <div>
+                                        <strong>Description:</strong>
+                                    </div>
+                                    <div dangerouslySetInnerHTML={{__html: `${record.description || ""}`}} />
+                                </div>
+                            </div>
+                            <div className="col-6 text-right">
+                                {record.photo && <div>
+                                     <img src={record.getRef ("photo")} className="img-fluid" width={400} height={300} alt={record.photo} />
+                                </div>}
+                            </div>
+                        </div>
+                    );
+                })}
+            </div>
+        );
+    }
+    
+    // item form layout
+    static _layout () {
+        return {
+            "Information": [
+                "id",
+                [
+                    "name", "date"
+                ],
+                [
+                    "type", "cost"
+                ],
+                [
+                    "description"
+                ],
+                [
+                    "photo"
+                ],
+                [
+                    "t.item.comment"
+                ]
+            ]
+        };
+    }
+    
+    // new item render
+    static _renderField ({field, store}) {
+        if (field.props.property === "date") {
+            return React.cloneElement (field, {value: new Date (), showTime: true});
+        } else {
+            return field;
+        }
+    }
 
-	// item render
-	_renderField ({field, store}) {
-		if (field.props.property === "date") {
-			return React.cloneElement (field, {showTime: true});
-		} else {
-			return field;
-		}
-	}
+    // item render
+    _renderField ({field, store}) {
+        if (field.props.property === "date") {
+            return React.cloneElement (field, {showTime: true});
+        } else {
+            return field;
+        }
+    }
 };
 
 export default ItemModel;
@@ -598,22 +598,22 @@ import objectumClient from "objectum-client";
 const {Record} = objectumClient;
 
 function timeout (ms = 500) {
-	return new Promise (resolve => setTimeout (() => resolve (), ms));
+    return new Promise (resolve => setTimeout (() => resolve (), ms));
 };
 
 class ItemModel extends Record {
-	async getComments ({progress}) {
-		for (let i = 0; i < 10; i ++) {
-			await timeout (1000);
-			progress ({label: "processing", value: i + 1, max: 10});
-		}
-		return await this.store.getRecs ({
-			model: "t.item.comment",
-			filters: [
-				["item", "=", this.id]
-			]
-		});
-	}
+    async getComments ({progress}) {
+        for (let i = 0; i < 10; i ++) {
+            await timeout (1000);
+            progress ({label: "processing", value: i + 1, max: 10});
+        }
+        return await this.store.getRecs ({
+            model: "t.item.comment",
+            filters: [
+                ["item", "=", this.id]
+            ]
+        });
+    }
 };
 
 export default ItemModel;
@@ -644,71 +644,71 @@ proxy.registerAccessMethods (accessMethods);
 
 ```js
 let map = {
-	"guest": {
-		"data": {
-			"model": {
-				"item": true, "d.item.type": true, "t.item.comment": true
-			},
-			"query": {
-				"objectum.userMenuItems": true
-			}
-		},
-		"read": {
-			"objectum.role": true, "objectum.user": true, "objectum.menu": true, "objectum.menuItem": true
-		}
-	}
+    "guest": {
+        "data": {
+            "model": {
+                "item": true, "d.item.type": true, "t.item.comment": true
+            },
+            "query": {
+                "objectum.userMenuItems": true
+            }
+        },
+        "read": {
+            "objectum.role": true, "objectum.user": true, "objectum.menu": true, "objectum.menuItem": true
+        }
+    }
 };
 async function _init ({store}) {
 };
 
 function _accessData ({store, data}) {
-	if (store.roleCode == "guest") {
-		if (data.model) {
-			return map.guest.data.model [store.getModel (data.model).getPath ()];
-		}
-		if (data.query) {
-			return map.guest.data.query [store.getQuery (data.query).getPath ()];
-		}
-	} else {
-		return true;
-	}
+    if (store.roleCode == "guest") {
+        if (data.model) {
+            return map.guest.data.model [store.getModel (data.model).getPath ()];
+        }
+        if (data.query) {
+            return map.guest.data.query [store.getQuery (data.query).getPath ()];
+        }
+    } else {
+        return true;
+    }
 };
 
 function _accessFilter ({store, model, alias}) {
 };
 
 function _accessCreate ({store, model, data}) {
-	return store.roleCode != "guest";
+    return store.roleCode != "guest";
 };
 
 function _accessRead ({store, model, record}) {
-	let modelPath = model.getPath ();
-	
-	if (store.roleCode == "guest") {
-		if (modelPath == "objectum.user") {
-			return record.login == "guest";
-		}
-		return map.guest.read [modelPath];
-	}
-	return true;
+    let modelPath = model.getPath ();
+    
+    if (store.roleCode == "guest") {
+        if (modelPath == "objectum.user") {
+            return record.login == "guest";
+        }
+        return map.guest.read [modelPath];
+    }
+    return true;
 };
 
 function _accessUpdate ({store, model, record, data}) {
-	return store.roleCode != "guest";
+    return store.roleCode != "guest";
 };
 
 function _accessDelete ({store, model, record}) {
-	return store.roleCode != "guest";
+    return store.roleCode != "guest";
 };
 
 export default {
-	_init,
-	_accessData,
-	_accessFilter,
-	_accessCreate,
-	_accessRead,
-	_accessUpdate,
-	_accessDelete
+    _init,
+    _accessData,
+    _accessFilter,
+    _accessCreate,
+    _accessRead,
+    _accessUpdate,
+    _accessDelete
 };
 ```
 </details>
@@ -724,7 +724,7 @@ export default {
 
 Действия можно запретить или ограничить, например разрешать изменять только набор свойств определенной роли.  
 Создание, изменение, удаление моделей, свойств, запросов и столбцов доступно только суперпользователю admin.
-	
+    
 ## Действия администратора
 Иногда нужно выполнить серверное действие с максимальными правами. Это может быть регистрация пользователя или какая-то обратная связь.  
 Подключение в index.js:
@@ -744,36 +744,36 @@ import util from "util";
 fs.readFileAsync = util.promisify (fs.readFile);
 
 function timeout (ms = 500) {
-	return new Promise (resolve => setTimeout (() => resolve (), ms));
+    return new Promise (resolve => setTimeout (() => resolve (), ms));
 };
 
 async function readFile ({store, progress, filename}) {
-	for (let i = 0; i < 10; i ++) {
-		await timeout (1000);
-		progress ({label: "processing", value: i + 1, max: 10});
-	}
-	return await fs.readFileAsync (filename, "utf8");
+    for (let i = 0; i < 10; i ++) {
+        await timeout (1000);
+        progress ({label: "processing", value: i + 1, max: 10});
+    }
+    return await fs.readFileAsync (filename, "utf8");
 };
 
 async function increaseCost ({store, progress}) {
-	await store.startTransaction ("demo");
-	
-	let records = await store.getRecords ({model: "item"});
-	
-	for (let i = 0; i < records.length; i ++) {
-		let record = records [i];
-		
-		record.cost = record.cost + 1;
-		await record.sync ();
-	}
-	await store.commitTransaction ();
-	
-	return "ok";
+    await store.startTransaction ("demo");
+    
+    let records = await store.getRecords ({model: "item"});
+    
+    for (let i = 0; i < records.length; i ++) {
+        let record = records [i];
+        
+        record.cost = record.cost + 1;
+        await record.sync ();
+    }
+    await store.commitTransaction ();
+    
+    return "ok";
 };
 
 export default {
-	readFile,
-	increaseCost
+    readFile,
+    increaseCost
 };
 ```
 </details>
@@ -887,10 +887,10 @@ createReport ({
 let $o = require ("../../server/objectum");
 
 $o.db.execute ({
-	"code": "catalog",
-	"fn": "export",
-	"exceptRecords": ["item"],
-	"file": "../schema/schema-catalog.json"
+    "code": "catalog",
+    "fn": "export",
+    "exceptRecords": ["item"],
+    "file": "../schema/schema-catalog.json"
 });
 ```
 
@@ -901,9 +901,9 @@ $o.db.execute ({
 let $o = require ("../../../server/objectum");
 
 $o.db.execute ({
-	"code": "catalog_test",
-	"fn": "import",
-	"file": "../schema/schema-catalog.json"
+    "code": "catalog_test",
+    "fn": "import",
+    "file": "../schema/schema-catalog.json"
 });
 ```
 
