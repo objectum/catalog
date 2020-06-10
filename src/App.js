@@ -68,7 +68,7 @@ class App extends Component {
 			}
 			return (
 				<div className="container">
-					<div className="m-2">
+					<div className="m-5 px-4">
 						<div className="text-right py-1 border">
 							<Action label="Admin action: readFile" onClick={this.readFileAction} />
 							<Action label="Admin action: increaseCost" onClick={this.increaseCostAction} />
@@ -90,9 +90,9 @@ class App extends Component {
 				store={store}
 				name="Catalog"
 				onConnect={this.onConnect}
-				onCustomRender={this.onCustomRender}
-				username="guest"
-				password={crypto.createHash ("sha1").update ("guest").digest ("hex").toUpperCase ()}
+				_onCustomRender={this.onCustomRender}
+				_username="guest"
+				_password={crypto.createHash ("sha1").update ("guest").digest ("hex").toUpperCase ()}
 			/>
 		);
 	}

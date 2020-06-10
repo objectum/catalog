@@ -58,7 +58,7 @@ class ItemModel extends Record {
 							</div>
 							<div className="col-6 text-right">
 								{record.photo && <div>
-									 <img src={record.getRef ("photo")} className="img-fluid" width={400} height={300} alt={record.photo} />
+									 <img src={record.getRef ("photo")} className="img-fluid" width={300} height={200} alt={record.photo} />
 								</div>}
 							</div>
 						</div>
