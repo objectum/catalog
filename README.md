@@ -10,6 +10,7 @@ Objectum ecosystem:
 * React components https://github.com/objectum/objectum-react  
 * Command-line interface (CLI) https://github.com/objectum/objectum-cli  
 * Objectum project example https://github.com/objectum/catalog 
+* Objectum project example (PWA) https://github.com/objectum/recipes 
 
 ## Install
 
@@ -68,7 +69,7 @@ node index.js
 Create models, properties, queries, records:
 ```bash
 cd /opt/objectum/projects/catalog
-objectum-cli --file catalog-cli.json
+objectum-cli --import-json catalog-cli.json --file-directory files
 ```
 
 Run project:
@@ -90,7 +91,7 @@ password: user
 Run in development mode:
 ```bash
 cd /opt/objectum/projects/catalog
-npm start
+npm run start
 ```
 
 Open URL http://127.0.0.1:3000
