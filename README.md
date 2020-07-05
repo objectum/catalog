@@ -36,7 +36,7 @@ Install project:
 mkdir /opt/objectum/projects/catalog
 cd /opt/objectum/projects/catalog
 git clone https://github.com/objectum/catalog.git .
-npm install
+yarn install
 npm run build
 cp -r /opt/objectum/projects/catalog/sample/* /opt/objectum/projects/catalog
 ```

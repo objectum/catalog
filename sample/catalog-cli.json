@@ -1,151 +1,169 @@
 {
 	"createModel": [
 		{
-			"name": "Item", 
+			"name": "Item",
 			"code": "item"
 		},
 		{
-			"name": "Item", 
-			"code": "item",
-			"parent": "d"
+			"parent": "d",
+			"name": "Item",
+			"code": "item"
 		},
 		{
-			"name": "Type", 
-			"code": "type",
-			"parent": "d.item"
+			"parent": "t",
+			"name": "Item",
+			"code": "item"
 		},
 		{
-			"name": "Item", 
-			"code": "item",
-			"parent": "t"
+			"parent": "t.item",
+			"name": "Comment",
+			"code": "comment"
 		},
 		{
-			"name": "Comment", 
-			"code": "comment",
-			"parent": "t.item"
+			"parent": "d.item",
+			"name": "Category",
+			"code": "category"
+		},
+		{
+			"parent": "d.item",
+			"name": "Company",
+			"code": "company"
+		},
+		{
+			"parent": "d.item",
+			"name": "Color",
+			"code": "color"
 		}
 	],
 	"createProperty": [
 		{
-			"model": "d.item.type", 
-			"name": "Name", 
-			"code": "name",
-			"type": "string"
-		},
-		{
-			"model": "t.item.comment", 
-			"name": "Item", 
+			"model": "t.item.comment",
+			"name": "Item",
 			"code": "item",
 			"type": "item"
 		},
 		{
-			"model": "t.item.comment", 
+			"model": "t.item.comment",
 			"name": "Date",
 			"code": "date",
-			"type": "date"
+			"type": "Date"
 		},
 		{
 			"model": "t.item.comment",
 			"name": "Text",
 			"code": "text",
-			"type": "string"
+			"type": "String"
 		},
 		{
-			"model": "item", 
-			"name": "Date", 
+			"model": "item",
+			"name": "Date",
 			"code": "date",
-			"type": "date"
+			"type": "Date"
 		},
 		{
-			"model": "item", 
-			"name": "Name", 
+			"model": "item",
+			"name": "Name",
 			"code": "name",
-			"type": "string"
+			"type": "String"
 		},
 		{
 			"model": "item",
 			"name": "Description",
 			"code": "description",
-			"type": "string",
+			"type": "String",
 			"opts": {
 				"wysiwyg": true
 			}
 		},
 		{
-			"model": "item", 
-			"name": "Cost", 
+			"model": "item",
+			"name": "Cost",
 			"code": "cost",
-			"type": "number",
+			"type": "Number",
 			"opts": {
 				"min": 0
 			}
 		},
 		{
-			"model": "item", 
-			"name": "Type", 
-			"code": "type",
-			"type": "d.item.type"
-		},
-		{
-			"model": "item", 
-			"name": "Photo", 
+			"model": "item",
+			"name": "Photo",
 			"code": "photo",
-			"type": "file",
+			"type": "File",
 			"opts": {
 				"image": {
-					"width": 300,
-					"height": 200,
-					"aspect": 1.5
+					"aspect": 1,
+					"resize": {
+						"width": 200,
+						"height": 200
+					}
 				}
 			}
+		},
+		{
+			"model": "d.item.category",
+			"name": "Name",
+			"code": "name",
+			"type": "String"
+		},
+		{
+			"model": "d.item.category",
+			"name": "Parent",
+			"code": "parent",
+			"type": "d.item.category"
+		},
+		{
+			"model": "d.item.company",
+			"name": "Name",
+			"code": "name",
+			"type": "String"
+		},
+		{
+			"model": "d.item.color",
+			"name": "Name",
+			"code": "name",
+			"type": "String"
+		},
+		{
+			"model": "item",
+			"name": "Category",
+			"code": "category",
+			"type": "d.item.category"
+		},
+		{
+			"model": "item",
+			"name": "Company",
+			"code": "company",
+			"type": "d.item.company"
+		},
+		{
+			"model": "item",
+			"name": "Color",
+			"code": "color",
+			"type": "d.item.color"
+		},
+		{
+			"model": "item",
+			"name": "Code",
+			"code": "code",
+			"type": "String"
+		},
+		{
+			"model": "item",
+			"name": "Amount",
+			"code": "amount",
+			"type": "Number"
 		}
 	],
 	"createQuery": [
 		{
+			"parent": "t",
 			"name": "Item",
 			"code": "item"
 		},
 		{
-			"name": "List",
-			"code": "list",
-			"parent": "item",
-			"query": [
-				"{\"data\": \"begin\"}",
-				"select",
-				"    {\"prop\": \"a.id\", \"as\": \"id\"},",
-				"    {\"prop\": \"a.name\", \"as\": \"name\"},",
-				"    {\"prop\": \"a.description\", \"as\": \"description\"},",
-				"    {\"prop\": \"a.cost\", \"as\": \"cost\"},",
-				"    {\"prop\": \"a.date\", \"as\": \"date\"},",
-				"    {\"prop\": \"a.photo\", \"as\": \"photo\"},",
-				"    {\"prop\": \"a.type\", \"as\": \"type\"}",
-				"{\"data\": \"end\"}",
-				"",
-				"{\"count\": \"begin\"}",
-				"select",
-				"    count (*) as num",
-				"{\"count\": \"end\"}",
-				"",
-				"from",
-				"    {\"model\": \"item\", \"alias\": \"a\"}",
-				"",
-				"{\"where\": \"empty\"}",
-				"",
-				"{\"order\": \"empty\"}",
-				"",
-				"limit {\"param\": \"limit\"}",
-				"offset {\"param\": \"offset\"}"
-			]
-		},
-		{
-			"name": "Item",
-			"code": "item",
-			"parent": "t"
-		},
-		{
+			"parent": "t.item",
 			"name": "Comment",
 			"code": "comment",
-			"parent": "t.item",
 			"query": [
 				"{\"data\": \"begin\"}",
 				"select",
@@ -163,9 +181,7 @@
 				"from",
 				"    {\"model\": \"t.item.comment\", \"alias\": \"a\"}",
 				"",
-				"{\"where\": \"begin\"}",
-				"    {\"prop\": \"a.item\"} = {\"param\": \"item\"}",
-				"{\"where\": \"end\"}",
+				"{\"where\": \"empty\"}",
 				"",
 				"{\"order\": \"empty\"}",
 				"",
@@ -174,148 +190,5 @@
 			]
 		}
 	],
-	"createRecord": [
-		{
-			"_model": "d.item.type",
-			"name": "Videocard",
-			"_ref": "videocardType"
-		},
-		{
-			"_model": "d.item.type",
-			"name": "Processor"
-		},
-		{
-			"_model": "d.item.type",
-			"name": "Motherboard"
-		},
-		{
-			"_model": "objectum.menu",
-			"name": "User",
-			"code": "user",
-			"_ref": "userMenu"
-		},
-		{
-			"_model": "objectum.menuItem",
-			"menu": {
-				"_ref": "userMenu"
-			},
-			"name": "Items",
-			"icon": "fas fa-list",
-			"order": 1,
-			"path": "/model_list/item"
-		},
-		{
-			"_model": "objectum.menuItem",
-			"menu": {
-				"_ref": "userMenu"
-			},
-			"name": "Dictionary",
-			"icon": "fas fa-book",
-			"order": 2,
-			"_ref": "dictionaryMenuItem"
-		},
-		{
-			"_model": "objectum.menuItem",
-			"menu": {
-				"_ref": "userMenu"
-			},
-			"name": "Item type",
-			"icon": "fas fa-book",
-			"parent": {
-				"_ref": "dictionaryMenuItem"
-			},
-			"order": 1,
-			"path": "/model_list/d_item_type"
-		},
-		{
-			"_model": "objectum.role",
-			"name": "User",
-			"code": "user",
-			"menu": {
-				"_ref": "userMenu"
-			},
-			"_ref": "userRole"
-		},
-		{
-			"_model": "objectum.user",
-			"name": "User",
-			"login": "user",
-			"password": "user",
-			"role": {
-				"_ref": "userRole"
-			}
-		},
-		{
-			"_model": "objectum.menu",
-			"name": "Guest",
-			"code": "guest",
-			"_ref": "guestMenu"
-		},
-		{
-			"_model": "objectum.menuItem",
-			"menu": {
-				"_ref": "guestMenu"
-			},
-			"name": "Items",
-			"icon": "fas fa-list",
-			"order": 1,
-			"path": "/model_list/item"
-		},
-		{
-			"_model": "objectum.role",
-			"name": "Guest",
-			"code": "guest",
-			"menu": {
-				"_ref": "guestMenu"
-			},
-			"_ref": "guestRole"
-		},
-		{
-			"_model": "objectum.user",
-			"name": "Guest",
-			"login": "guest",
-			"password": "guest",
-			"role": {
-				"_ref": "guestRole"
-			}
-		},
-		{
-			"_model": "item",
-			"name": "RTX 2060",
-			"date": "2020-06-01T19:27:38.292Z",
-			"type": {
-				"_ref": "videocardType"
-			},
-			"cost": "300",
-			"photo": "images/rtx2060.png"
-		},
-		{
-			"_model": "item",
-			"name": "RTX 2070",
-			"date": "2020-06-02T19:27:38.292Z",
-			"type": {
-				"_ref": "videocardType"
-			},
-			"cost": "500",
-			"photo": "images/rtx2070.png"
-		},
-		{
-			"_model": "item",
-			"name": "RTX 2080",
-			"description": [
-				"<ul>",
-				"<li>11GB GDDR6</span></li>",
-				"<li>CUDA Cores: 4352</span></li>",
-				"<li>Display Connectors: DisplayPort, HDMI, USB Type-C</span></li>",
-				"<li>Maximum Digital Resolution: 7680x4320</span></li>",
-				"</ul>"
-			],
-			"date": "2020-06-03T19:27:38.292Z",
-			"type": {
-				"_ref": "videocardType"
-			},
-			"cost": "800",
-			"photo": "images/rtx2080.png"
-		}
-	]
+	"createColumn": []
 }

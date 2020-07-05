@@ -22,8 +22,9 @@ class ItemModel extends Record {
 		];
 		return React.cloneElement (grid, {
 			label: "Items", // grid label
-			query: "item.list", // grid query
-			onRenderTable: ItemModel.onRenderTable, // grid table custom render
+			showImages: true,
+			//query: "item.list", // grid query
+			//onRenderTable: ItemModel.onRenderTable, // grid table custom render
 			children: store.roleCode === "guest" ? null : actions
 		});
 	}
@@ -45,7 +46,7 @@ class ItemModel extends Record {
 										<strong className="mr-1">Date:</strong>{rec.date && rec.date.toLocaleString ()}
 									</div>
 									<div>
-										<strong className="mr-1">Type:</strong>{rec.type && store.dict ["d.item.type"][rec.type].name}
+										<strong className="mr-1">Type:</strong>{rec.category && store.dict ["d.item.category"][rec.category].name}
 									</div>
 									<div>
 										<strong className="mr-1">Cost:</strong>{rec.cost}
@@ -58,7 +59,7 @@ class ItemModel extends Record {
 							</div>
 							<div className="col-6 text-right">
 								{record.photo && <div>
-									 <img src={record.getRef ("photo")} className="img-fluid" width={300} height={200} alt={record.photo} />
+									 <img src={record.getRef ("photo")} className="img-fluid" width={200} height={200} alt={record.photo} />
 								</div>}
 							</div>
 						</div>
@@ -77,7 +78,10 @@ class ItemModel extends Record {
 					"name", "date"
 				],
 				[
-					"type", "cost"
+					"category", "cost"
+				],
+				[
+					"company", "color"
 				],
 				[
 					"description"

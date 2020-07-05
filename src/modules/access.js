@@ -5,7 +5,7 @@ let map = {
 	"guest": {
 		"data": {
 			"model": {
-				"item": true, "d.item.type": true, "t.item.comment": true
+				"item": true, "d.item.category": true, "d.item.company": true, "d.item.color": true, "t.item.comment": true
 			},
 			"query": {
 				"objectum.userMenuItems": true

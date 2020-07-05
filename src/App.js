@@ -28,7 +28,7 @@ class App extends Component {
 	}
 	
 	onConnect = async () => {
-		await store.getDict ("d.item.type");
+		await store.getDict ("d.item.category");
 		
 		this.setState ({
 			roleCode: store.roleCode
@@ -91,8 +91,12 @@ class App extends Component {
 				name="Catalog"
 				onConnect={this.onConnect}
 				onCustomRender={this.onCustomRender}
+				username="admin"
+				password={crypto.createHash ("sha1").update ("admin").digest ("hex").toUpperCase ()}
+/*
 				username="guest"
 				password={crypto.createHash ("sha1").update ("guest").digest ("hex").toUpperCase ()}
+*/
 			/>
 		);
 	}
