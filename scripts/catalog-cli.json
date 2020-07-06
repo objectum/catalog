@@ -192,5 +192,41 @@
 			]
 		}
 	],
-	"createColumn": []
+	"createColumn": [],
+	"createRecord": [
+		{
+			"_model": "objectum.menu",
+			"name": "User",
+			"code": "user",
+			"order": 2,
+			"_ref": "userMenu"
+		},
+		{
+			"_model": "objectum.menuItem",
+			"menu": {
+				"_ref": "userMenu"
+			},
+			"name": "Items",
+			"path": "/model_list/item",
+			"icon": "fas fa-list"
+		},
+		{
+			"_model": "objectum.role",
+			"name": "User",
+			"code": "user",
+			"menu": {
+				"_ref": "userMenu"
+			},
+			"_ref": "userRole"
+		},
+		{
+			"_model": "objectum.user",
+			"name": "User",
+			"login": "user",
+			"password": "12DEA96FEC20593566AB75692C9949596833ADC9",
+			"role": {
+				"_ref": "userRole"
+			}
+		}
+	]
 }
