@@ -8,12 +8,24 @@ class ItemCommentModel  extends Record {
 		});
 	}
 	
+	static _renderForm ({form, store}) {
+		return React.cloneElement (form, {
+			defaults: {
+				date: new Date ()
+			}
+		});
+	}
+
 	static _renderField ({field, store}) {
 		if (field.props.property === "date") {
-			return React.cloneElement (field, {value: new Date (), showTime: true});
+			return React.cloneElement (field, {showTime: true});
 		} else {
 			return field;
 		}
+	}
+	
+	_renderField ({field, store}) {
+		return ItemCommentModel._renderField ({field, store});
 	}
 };
 export default ItemCommentModel;

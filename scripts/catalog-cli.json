@@ -1,0 +1,196 @@
+{
+	"createModel": [
+		{
+			"name": "Item",
+			"code": "item"
+		},
+		{
+			"parent": "d",
+			"name": "Item",
+			"code": "item"
+		},
+		{
+			"parent": "t",
+			"name": "Item",
+			"code": "item"
+		},
+		{
+			"parent": "t.item",
+			"name": "Comment",
+			"code": "comment"
+		},
+		{
+			"parent": "d.item",
+			"name": "Category",
+			"code": "category"
+		},
+		{
+			"parent": "d.item",
+			"name": "Company",
+			"code": "company"
+		},
+		{
+			"parent": "d.item",
+			"name": "Color",
+			"code": "color"
+		}
+	],
+	"createProperty": [
+		{
+			"model": "t.item.comment",
+			"name": "Item",
+			"code": "item",
+			"type": "item"
+		},
+		{
+			"model": "t.item.comment",
+			"name": "Date",
+			"code": "date",
+			"type": "Date"
+		},
+		{
+			"model": "t.item.comment",
+			"name": "Text",
+			"code": "text",
+			"type": "String"
+		},
+		{
+			"model": "item",
+			"name": "Date",
+			"code": "date",
+			"type": "Date"
+		},
+		{
+			"model": "item",
+			"name": "Name",
+			"code": "name",
+			"type": "String"
+		},
+		{
+			"model": "item",
+			"name": "Description",
+			"code": "description",
+			"type": "String",
+			"opts": {
+				"wysiwyg": true
+			}
+		},
+		{
+			"model": "item",
+			"name": "Cost",
+			"code": "cost",
+			"type": "Number",
+			"opts": {
+				"min": 0
+			}
+		},
+		{
+			"model": "item",
+			"name": "Photo",
+			"code": "photo",
+			"type": "File",
+			"opts": {
+				"image": {
+					"aspect": 1,
+					"resize": {
+						"width": 200,
+						"height": 200
+					}
+				}
+			}
+		},
+		{
+			"model": "d.item.category",
+			"name": "Name",
+			"code": "name",
+			"type": "String"
+		},
+		{
+			"model": "d.item.category",
+			"name": "Parent",
+			"code": "parent",
+			"type": "d.item.category"
+		},
+		{
+			"model": "d.item.company",
+			"name": "Name",
+			"code": "name",
+			"type": "String"
+		},
+		{
+			"model": "d.item.color",
+			"name": "Name",
+			"code": "name",
+			"type": "String"
+		},
+		{
+			"model": "item",
+			"name": "Category",
+			"code": "category",
+			"type": "d.item.category"
+		},
+		{
+			"model": "item",
+			"name": "Company",
+			"code": "company",
+			"type": "d.item.company"
+		},
+		{
+			"model": "item",
+			"name": "Color",
+			"code": "color",
+			"type": "d.item.color"
+		},
+		{
+			"model": "item",
+			"name": "Code",
+			"code": "code",
+			"type": "String"
+		},
+		{
+			"model": "item",
+			"name": "Amount",
+			"code": "amount",
+			"type": "Number"
+		}
+	],
+	"createQuery": [
+		{
+			"parent": "t",
+			"name": "Item",
+			"code": "item"
+		},
+		{
+			"parent": "t.item",
+			"name": "Comment",
+			"code": "comment",
+			"query": [
+				"{\"data\": \"begin\"}",
+				"select",
+				"    {\"prop\": \"a.id\", \"as\": \"id\"},",
+				"    {\"prop\": \"a.item\", \"as\": \"item\"},",
+				"    {\"prop\": \"a.date\", \"as\": \"date\"},",
+				"    {\"prop\": \"a.text\", \"as\": \"text\"}",
+				"{\"data\": \"end\"}",
+				"",
+				"{\"count\": \"begin\"}",
+				"select",
+				"    count (*) as num",
+				"{\"count\": \"end\"}",
+				"",
+				"from",
+				"    {\"model\": \"t.item.comment\", \"alias\": \"a\"}",
+				"",
+				"{\"where\": \"begin\"}",
+				"    {\"prop\": \"a.item\"} = {\"param\": \"item\"}",
+				"{\"where\": \"end\"},",
+				"",
+				"{\"order\": \"empty\"}",
+				"",
+				"limit {\"param\": \"limit\"}",
+				"offset {\"param\": \"offset\"}"
+			]
+		}
+	],
+	"createColumn": []
+}
