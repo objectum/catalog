@@ -69,7 +69,7 @@ class App extends Component {
 			return (
 				<div className="container">
 					<div className="m-5 px-4">
-						<div className="text-right py-1 border">
+						<div className="text-right py-1 border d-flex">
 							<Action label="Admin action: readFile" onClick={this.readFileAction} />
 							<Action label="Admin action: increaseCost" onClick={this.increaseCostAction} />
 							<Action label="Sign In" onClick={() => this.signIn (app)} />
