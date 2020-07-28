@@ -2,7 +2,7 @@
 /* eslint-disable eqeqeq */
 
 import React from "react";
-import {Record, factory} from "objectum-client";
+import {Record} from "objectum-client";
 import {Action} from "objectum-react";
 
 class ItemModel extends Record {
