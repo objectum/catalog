@@ -64,7 +64,7 @@ node store-import.js
 Run objectum:
 ```bash
 cd /opt/objectum/server
-node index.js
+node index-8200.js
 ```
 
 Create models, properties, queries, records:
@@ -76,8 +76,8 @@ objectum-cli --import-json scripts/catalog-cli.json
 Import test data (optional):
 ```bash
 cd /opt/objectum/projects/catalog
-objectum-cli --import-csv scripts/stationery.csv --model item --file-directory/script/files --handler scripts/csv-handler.js
-objectum-cli --import-csv scripts/tv.csv --model item --file-directory/script/files --handler scripts/csv-handler.js
+objectum-cli --import-csv scripts/stationery.csv --model item --file-directory scripts/files --handler scripts/csv-handler.js
+objectum-cli --import-csv scripts/tv.csv --model item --file-directory scripts/files --handler scripts/csv-handler.js
 ```
 
 Build and run project:
