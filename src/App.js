@@ -91,12 +91,12 @@ class App extends Component {
 				name="Catalog"
 				onConnect={this.onConnect}
 				onCustomRender={this.onCustomRender}
+/*
 				username="admin"
 				password={crypto.createHash ("sha1").update ("admin").digest ("hex").toUpperCase ()}
-/*
+*/
 				username="guest"
 				password={crypto.createHash ("sha1").update ("guest").digest ("hex").toUpperCase ()}
-*/
 			/>
 		);
 	}
