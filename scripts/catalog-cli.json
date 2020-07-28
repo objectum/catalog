@@ -227,6 +227,21 @@
 			"role": {
 				"_ref": "userRole"
 			}
+		},
+		{
+			"_model": "objectum.role",
+			"name": "Guest",
+			"code": "guest",
+			"_ref": "guestRole"
+		},
+		{
+			"_model": "objectum.user",
+			"name": "Guest",
+			"login": "guest",
+			"password": "35675E68F4B5AF7B995D9205AD0FC43842F16450",
+			"role": {
+				"_ref": "guestRole"
+			}
 		}
 	]
 }
