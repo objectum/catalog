@@ -72,9 +72,10 @@ cd /opt/objectum/projects/catalog
 objectum-cli --import-json catalog-cli.json --file-directory files
 ```
 
-Run project:
+Build and run project:
 ```bash
 cd /opt/objectum/projects/catalog
+npm run build
 node index.js
 ```
 

@@ -502,7 +502,7 @@ objectum-cli --import-csv scripts/stationery.csv --model item --file-directory/s
 objectum-cli --import-csv scripts/tv.csv --model item --file-directory/script/files --handler scripts/csv-handler.js
 ```
 
-Возможности импорт CSV:
+Возможности импорта CSV:
 * Импортирует строки из CSV как записи в указанную модель (item)
 * Импортирует файлы (изображения) из указанного каталога
 * С помощью обработчика загрузки меняются записи при добавлении (csv-handler.js):
