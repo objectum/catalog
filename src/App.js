@@ -36,20 +36,19 @@ class App extends Component {
 	}
 	
 	readFileAction = async ({progress}) => {
-		this.setState ({
-			fileData: await store.remote ({
-				model: "admin",
-				method: "readFile",
-				filename: "package.json",
-				progress
-			})
+		return await store.remote ({
+			model: "admin",
+			method: "readFile",
+			filename: "package.json",
+			progress
 		});
 	}
 	
-	increaseCostAction = async () => {
+	increaseCostAction = async ({progress}) => {
 		let result = await store.remote ({
 			model: "admin",
-			method: "increaseCost"
+			method: "increaseCost",
+			progress
 		});
 		this.setState ({refresh: !this.state.refresh});
 		
@@ -68,14 +67,11 @@ class App extends Component {
 			}
 			return (
 				<div className="container">
-					<div className="m-5 px-4">
+					<div className="mx-5 my-2 px-4">
 						<div className="pl-1 pt-1 border d-flex">
 							<Action label="Admin action: readFile" onClick={this.readFileAction} />
 							<Action label="Admin action: increaseCost" onClick={this.increaseCostAction} />
 							<Action label="Sign In" onClick={() => this.signIn (app)} />
-							{this.state.fileData && <div className="p-1">
-								<StringField textarea rows={15} value={this.state.fileData} />
-							</div>}
 						</div>
 						<ModelList store={store} model="item" refresh={this.state.refresh} />
 					</div>

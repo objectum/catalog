@@ -25,6 +25,7 @@ async function increaseCost ({store, progress}) {
 		
 		record.cost = record.cost + 1;
 		await record.sync ();
+		progress ({label: "processing", value: i + 1, max: records.length});
 	}
 	await store.commitTransaction ();
 	
