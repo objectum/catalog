@@ -59,7 +59,7 @@ import "objectum-react/lib/fontawesome/css/all.css";
 
 ----------
 
-![catalog](objectum-screen-3.png)
+![catalog](objectum-catalog-1.png)
 
 ----------
 
@@ -131,13 +131,20 @@ npm start
 
 ----------
 
-![auth](objectum-screen-6.png)
+![auth](objectum-catalog-2.png)
 
 ----------
 
 
 ## Пакетное добавление данных в хранилище
 Структура хранилища формируется с помощью UI, но для быстрого добавления большого количества данных лучше использовать objectum-cli.  
+
+### Импорт JSON
+```bash
+cd /opt/objectum/projects/catalog  
+objectum-cli --import-json scripts/catalog-cli.json
+```
+  
 <details>
 <summary>Здесь скрипт catalog-cli.json</summary>
 
@@ -462,6 +469,8 @@ npm start
     ]
 }
 ```
+</details>
+
 Что всё это значит:
 * createModel - создание моделей, где name - наименование, code - текстовый идентификатор, parent - родитель. Иерархия используется для группировки моделей.
     * В примере создаются модели item, d.item.type, t.item.comment.
@@ -482,7 +491,20 @@ npm start
     * JSON конвертируется в текст.
     * "photo": "images/rtx2080.png" - добавление файлов. В photo запишется "rtx2080.png" и загрузится файл по относительному пути "images/rtx2080.png".
 
-</details>
+
+### Импорт CSV
+
+```bash
+cd /opt/objectum/projects/catalog  
+objectum-cli --import-csv scripts/stationery.csv --model item --file-directory/script/files --handler scripts/csv-handler.js
+objectum-cli --import-csv scripts/tv.csv --model item --file-directory/script/files --handler scripts/csv-handler.js
+```
+
+Возможности импорт CSV:
+* Импортирует строки из CSV как записи в указанную модель (item)
+* Импортирует файлы (изображения) из указанного каталога
+* С помощью обработчика загрузки меняются записи при добавлении (csv-handler.js):
+    * Скрипт дополняет параметры в справочники в т.ч. в древовидный (категория)
 
 ## Исходный код моделей
 Исходный код ItemModel подключается на клиенте и сервере. Для добавления ReactJS или NodeJS кода нужно разделить код на ItemClientModel, ItemServerModel или на ItemModel, ItemClientModel extends ItemModel, ItemServerModel extends ItemModel.  
