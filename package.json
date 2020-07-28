@@ -10,7 +10,7 @@
     "express-http-proxy": "^1.6.0",
     "follow-redirects": "^1.12.1",
     "objectum-proxy": "^1.0.19",
-    "objectum-react": "^1.1.391",
+    "objectum-react": "^1.1.392",
     "progress": "^2.0.3",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
